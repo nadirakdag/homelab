@@ -24,62 +24,12 @@ This repo store changes of my home lab with history and store configuration of a
 
 ## Hardware
 
-### Friday (NAS and Kubernates) Server 
 
-**Status:** Online
-
-**Operating System:** TrueNAS-SCALE-22.12.4.2
-
-**Processor:** AMD Ryzen 7 5700X 8-Core Processor
-
-**Motherboard:** MSI B450-A PRO MAX 
-
-**RAM:** Kingston KF3200C16D4/32GX 2 x 32 GB
-
-**Graphic Card:** NVIDIA GeForce GTX 1660
-
-**Additional Nic:** Open Smart OPS01G64NT Quad 4 Port Intel 82576EB Gigabit PCI-E X1 Ethernet
-
-**Disks**
-
-| Manufacturar | Quantity | Disk Size |
-|---|---|---|
-| Segate BarraCuda Compute | 3 | 4TB |
-| KIOXIA-EXCERIA G2 nvme SSD | 1 | 1TB |
-| SanDisk SSD PLUS  | 1 | 1TB |
-
-
-### Shield
-
-**Status:** Idle (waiting for configuration)
-
-**Manufacturar:** KingnovyPC
-
-**Nics:** 4 x Intel i226 2.5GbE LAN
-
-**Ram:** 8 GB
-
-**Hard Disk:** 128GB SSD nvme
-
-**Operating System:** OPNsense
-
-### Pit (Nas) Server
-
-**Status:** Idle (waiting for m2 ssd and a case)
-
-**Motherboard:** KingnovyPC 
-
-**Processor:** Intel N5105
-
-**Ram:** Kingston 2 x 4 GB
-
-### Raspberry Pi's 
-
-**Status:** Idle (waiting for ideas)
-
-**Model:** 3 x Raspberry Pi 4 8 GB 
-
-**Names:**
- - StarkNode Pi
- - VibraniumPi Core
- - WebSlinger Hub
+| Status | Server Name | OS | CPU | Motherboard | RAM | Graphic Card  | Disks | PCI-e |
+|---|---|---|---|---|---|---|---|---|
+| Online |  Friday (NAS and Kubernates) | TrueNAS-SCALE-22.12.4.2 | AMD Ryzen 7 5700X 8-Core Processor | MSI B450-A PRO MAX | Kingston KF3200C16D4/32GX 2 x 32 GB | NVIDIA GeForce GTX 1660 | 3 x Segate BarraCuda Compute 4TB, 1 x KIOXIA-EXCERIA G2 nvme SSD 1TB, 1 x SanDisk SSD PLUS 1TB | Open Smart OPS01G64NT Quad 4 Port Intel 82576EB Gigabit PCI-E X1 Ethernet |
+| Idle (waiting for configuration) | Shield | OPNsense | KingnovyPC |  KingnovyPC | 8 GB | - | 128GB SSD nvme | - |
+| Idle (waiting for m2 ssd and a case) | KingnovyPC | - | Intel N5105 | - | Kingston 2 x 4 GB | - | - | - |
+| Idle (waiting for ideas) | StarkNode Pi | Raspberry Pi 4 | - | - | 8GB | - | - |
+| Idle (waiting for ideas) | VibraniumPi Core | Raspberry Pi 4 | - | - | 8GB | - | - |
+| Idle (waiting for ideas) | WebSlinger Hub | Raspberry Pi 4 | - | - | 8GB | - | - |
