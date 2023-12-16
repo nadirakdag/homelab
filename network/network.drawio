@@ -1,0 +1,100 @@
+<mxfile host="app.diagrams.net" modified="2023-12-16T15:44:17.644Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:120.0) Gecko/20100101 Firefox/120.0" etag="ouYilQiPULhFCmp3JsjQ" version="22.1.11" type="device">
+  <diagram name="Page-1" id="XZcp8IgBbABmOSZvY-bJ">
+    <mxGraphModel dx="2522" dy="1354" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="zxQTibwvxlyvEzwTXjhr-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zxQTibwvxlyvEzwTXjhr-1" target="zxQTibwvxlyvEzwTXjhr-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zxQTibwvxlyvEzwTXjhr-4" value="WAN using PPPoE" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="zxQTibwvxlyvEzwTXjhr-3">
+          <mxGeometry x="0.0929" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zxQTibwvxlyvEzwTXjhr-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="zxQTibwvxlyvEzwTXjhr-1" target="zxQTibwvxlyvEzwTXjhr-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zxQTibwvxlyvEzwTXjhr-1" value="ONT " style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/security/Router_VPN.svg;" vertex="1" parent="1">
+          <mxGeometry x="397" y="220" width="55.800000000000004" height="39.6" as="geometry" />
+        </mxCell>
+        <mxCell id="zxQTibwvxlyvEzwTXjhr-8" value="LAN 1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zxQTibwvxlyvEzwTXjhr-2" target="zxQTibwvxlyvEzwTXjhr-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zxQTibwvxlyvEzwTXjhr-2" value="Shield Firewall" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/security/Router_VPN.svg;" vertex="1" parent="1">
+          <mxGeometry x="397" y="400" width="55.800000000000004" height="39.6" as="geometry" />
+        </mxCell>
+        <mxCell id="zxQTibwvxlyvEzwTXjhr-5" value="" style="image;aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;spacingTop=3;image=img/lib/active_directory/internet_cloud.svg;" vertex="1" parent="1">
+          <mxGeometry x="377" y="100" width="95.24" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="zxQTibwvxlyvEzwTXjhr-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="zxQTibwvxlyvEzwTXjhr-7" target="zxQTibwvxlyvEzwTXjhr-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zxQTibwvxlyvEzwTXjhr-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="zxQTibwvxlyvEzwTXjhr-7" target="zxQTibwvxlyvEzwTXjhr-12">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="260" y="610" />
+              <mxPoint x="189" y="610" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zxQTibwvxlyvEzwTXjhr-7" value="" style="image;html=1;image=img/lib/clip_art/networking/Wireless_Router_N_128x128.png" vertex="1" parent="1">
+          <mxGeometry x="220" y="490" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="zxQTibwvxlyvEzwTXjhr-9" value="" style="sketch=0;aspect=fixed;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#00188D;shape=mxgraph.mscae.enterprise.wireless_connection" vertex="1" parent="1">
+          <mxGeometry x="80" y="505" width="42" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="zxQTibwvxlyvEzwTXjhr-11" value="Workstation" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Personal_Computer_with_Server.svg;" vertex="1" parent="1">
+          <mxGeometry x="69.80000000000001" y="650" width="62.400000000000006" height="62.400000000000006" as="geometry" />
+        </mxCell>
+        <mxCell id="zxQTibwvxlyvEzwTXjhr-12" value="Gaming" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Personal_Computer_with_Server.svg;" vertex="1" parent="1">
+          <mxGeometry x="157.60000000000002" y="650" width="62.400000000000006" height="62.400000000000006" as="geometry" />
+        </mxCell>
+        <mxCell id="zxQTibwvxlyvEzwTXjhr-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=-0.08;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="zxQTibwvxlyvEzwTXjhr-7" target="zxQTibwvxlyvEzwTXjhr-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zxQTibwvxlyvEzwTXjhr-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zxQTibwvxlyvEzwTXjhr-15" target="zxQTibwvxlyvEzwTXjhr-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zxQTibwvxlyvEzwTXjhr-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zxQTibwvxlyvEzwTXjhr-15" target="zxQTibwvxlyvEzwTXjhr-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zxQTibwvxlyvEzwTXjhr-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zxQTibwvxlyvEzwTXjhr-15" target="zxQTibwvxlyvEzwTXjhr-22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zxQTibwvxlyvEzwTXjhr-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zxQTibwvxlyvEzwTXjhr-15" target="zxQTibwvxlyvEzwTXjhr-23">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zxQTibwvxlyvEzwTXjhr-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="zxQTibwvxlyvEzwTXjhr-15" target="zxQTibwvxlyvEzwTXjhr-24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zxQTibwvxlyvEzwTXjhr-15" value="" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/security/Router_VPN.svg;" vertex="1" parent="1">
+          <mxGeometry x="610" y="520" width="55.800000000000004" height="39.6" as="geometry" />
+        </mxCell>
+        <mxCell id="zxQTibwvxlyvEzwTXjhr-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.556;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="zxQTibwvxlyvEzwTXjhr-2" target="zxQTibwvxlyvEzwTXjhr-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zxQTibwvxlyvEzwTXjhr-17" value="LAN 2" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="zxQTibwvxlyvEzwTXjhr-16">
+          <mxGeometry x="-0.2566" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zxQTibwvxlyvEzwTXjhr-18" value="&lt;div&gt;Friday&lt;/div&gt;&lt;div&gt;NAS and Kubernetes&lt;br&gt;&lt;/div&gt;" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Personal_Computer_with_Server.svg;" vertex="1" parent="1">
+          <mxGeometry x="480" y="640" width="62.400000000000006" height="62.400000000000006" as="geometry" />
+        </mxCell>
+        <mxCell id="zxQTibwvxlyvEzwTXjhr-20" value="&lt;div&gt;Pit NAS&lt;br&gt;&lt;/div&gt;" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Personal_Computer_with_Server.svg;" vertex="1" parent="1">
+          <mxGeometry x="606.7" y="640" width="62.400000000000006" height="62.400000000000006" as="geometry" />
+        </mxCell>
+        <mxCell id="zxQTibwvxlyvEzwTXjhr-22" value="StarkNode Pi" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://productimages.hepsiburada.net/s/229/375-375/110000211001251.jpg;" vertex="1" parent="1">
+          <mxGeometry x="760" y="640" width="70" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="zxQTibwvxlyvEzwTXjhr-23" value="VibraniumPi Core" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://productimages.hepsiburada.net/s/229/375-375/110000211001251.jpg;" vertex="1" parent="1">
+          <mxGeometry x="860" y="640" width="70" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="zxQTibwvxlyvEzwTXjhr-24" value="WebSlinger Hub" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://productimages.hepsiburada.net/s/229/375-375/110000211001251.jpg;" vertex="1" parent="1">
+          <mxGeometry x="960" y="640" width="70" height="70" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
