@@ -8,7 +8,7 @@ This repo store changes of my home lab with history and store configuration of a
 - [x] Create 3d Pritable NAS Case or (find one) or Find a NAS case (like jonsbo n2/n3) (I bought a Jonsbo N2)
 - [ ] Build a new NAS Server
 - [ ] Re-configure Friday as single node Docker server or VM Hypervisor
-- [ ] Create a diagram of Network
+- [x] Create a diagram of Network
  
 ## Applications
 
@@ -67,3 +67,6 @@ This repo store changes of my home lab with history and store configuration of a
   - StarkNode Pi
   - VibraniumPi Core
   - WebSlinger Hub
+
+### Network Diagram
+![Network Diagram](network/network.png)
