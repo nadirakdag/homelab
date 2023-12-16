@@ -52,11 +52,12 @@ This repo store changes of my home lab with history and store configuration of a
 
 ### Pit (Nas) Server
 
-- **Status:** Idle (waiting for m2 ssd and a case)
+- **Status:** Idle (waiting install and configuration)
 - **Motherboard:** KingnovyPC
 - **Processor:** Intel N5105
 - **Ram:** Kingston 2 x 4 GB
 - **Hard Disk:** Kioxia Exceria NVMe 1TB 1700MB-1600MB/s M2 PCIe Nvme
+- **Case:** Jonsbo N2
 
 ### Raspberry Pi's 
 
