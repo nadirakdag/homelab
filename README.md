@@ -34,7 +34,6 @@ This repo store changes of my home lab with history and store configuration of a
 - **Graphic Card:** NVIDIA GeForce GTX 1660
 - **Additional Nic:** Open Smart OPS01G64NT Quad 4 Port Intel 82576EB Gigabit PCI-E X1 Ethernet
 - **Disks**
-  
   | Manufacturar | Quantity | Disk Size |
   |---|---|---|
   | Segate BarraCuda Compute | 3 | 4TB |
