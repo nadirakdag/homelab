@@ -1,0 +1,18 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: install prerequisites
+      apt:
+        name: 
+          - docker.io
+        update_cache: yes
+    
+    - name: add user permissions
+      shell: "usermod -aG docker poc"
+    
+    - name: install docker-compose
+      apt:
+        name: 
+          - docker-compose
+        update_cache: yes
