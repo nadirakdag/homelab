@@ -1,0 +1,234 @@
+version: "3.9"
+
+networks:
+  default:
+    driver: bridge
+  traefik_proxy:
+    name: traefik_proxy
+    driver: bridge
+
+services:
+
+# =============================================================
+#
+#	traefik - reverse proxy
+#
+# =============================================================
+
+  traefik:
+      image: traefik:latest
+      logging:
+        driver: json-file
+      command:
+        # - "--log.level=DEBUG"
+        - "--api.dashboard=true"
+        - "--api.insecure=true"
+        - "--providers.docker=true"
+        - "--providers.docker.exposedbydefault=false"
+        - "--entrypoints.web.address=:80"
+        - --providers.docker.network=traefik_proxy
+        - --providers.docker.swarmMode=false
+      container_name: traefik    
+      environment:
+        - PUID=1000
+        - PGID=1000
+        - TZ=Europe/Istanbul  
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.api.rule=Host(`traefik.localhost`)"
+        - "traefik.http.routers.api.service=api@internal"
+        # Add at least an authentication middleware basic or OAuth for a better security
+      ports:
+        - 80:80
+        - 443:443
+      volumes:
+        - /var/run/docker.sock:/var/run/docker.sock:ro  # So that Traefik can listen to the Docker events
+      restart: always
+      networks:
+        - traefik_proxy
+        - default
+
+
+# =============================================================
+#
+#	WHOAMI - test webserver
+#
+# =============================================================
+
+  whoami:
+    image: containous/whoami
+    container_name: whoami    
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Istanbul
+    logging:
+      driver: json-file
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.whoami.rule=Host(`whoami.localhost`)"
+    networks:
+      - traefik_proxy
+
+# =============================================================
+#
+#	Homarr - dashboard
+#
+# =============================================================
+
+  homarr:
+    container_name: homarr
+    image: ghcr.io/ajnart/homarr:latest
+    restart: unless-stopped    
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Istanbul
+    logging:
+      driver: json-file
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro # Optional, only if you want docker integration
+      - ./homarr/configs:/app/data/configs
+      - ./homarr/icons:/app/public/icons
+      - ./homarr/data:/data
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.homarr.rule=Host(`dashboard.localhost`)"
+    networks:
+      - traefik_proxy
+
+# =============================================================
+#
+#	deluge - torrent downlader
+#
+# =============================================================
+
+  deluge:
+    image: lscr.io/linuxserver/deluge:latest
+    container_name: deluge
+    logging:
+      driver: json-file
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Istanbul
+    volumes:
+      - ./deluge/config:/config
+      - ./deluge/downloads:/downloads
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.deluge.rule=Host(`deluge.localhost`)"
+      - "traefik.http.services.deluge.loadbalancer.server.port=8112"
+    networks:
+      - traefik_proxy
+
+# =============================================================
+#
+#	speedtest - network speed tool
+#
+# =============================================================
+
+  speedtest:
+    container_name: speedtest
+    image: miguelndecarvalho/speedtest-exporter:latest
+    networks:
+      - traefik_proxy
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.speedtest.rule=Host(`speedtest.localhost`)"
+      - "traefik.http.services.speedtest.loadbalancer.server.port=9798"
+    logging:
+      driver: json-file
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Istanbul
+
+# =============================================================
+#
+#	prometheus - monitoring
+#
+# =============================================================
+
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus:latest
+    restart: unless-stopped
+    volumes:
+      - ./prometheus/:/etc/prometheus/
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.prometheus.rule=Host(`prometheus.localhost`)"
+      - "traefik.http.services.prometheus.loadbalancer.server.port=9090"
+    logging:
+      driver: json-file
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Istanbul
+    links:
+      - ping:ping
+      - speedtest:speedtest
+    networks:
+      - traefik_proxy
+
+# =============================================================
+#
+#	graphana - monitoring dashboard
+#
+# =============================================================
+
+  grafana:
+    image: grafana/grafana
+    restart: unless-stopped
+    volumes:
+      - ./grafana/provisioning/:/etc/grafana/provisioning/
+    depends_on:
+      - prometheus
+    env_file:
+      - ./grafana/config.monitoring
+    networks:
+      - traefik_proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.grafana.rule=Host(`grafana.localhost`)"
+      - "traefik.http.services.grafana.loadbalancer.server.port=3000"
+    logging:
+      driver: json-file
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Istanbul
+
+# =============================================================
+#
+#	blackbox - ping tool
+#
+# =============================================================
+
+  ping:
+    image: prom/blackbox-exporter
+    restart: unless-stopped
+    command:
+      - '--config.file=/config/blackbox.yml'
+    networks:
+      - traefik_proxy
+    volumes:
+      - ./blackbox/config:/config
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.blackbox.rule=Host(`blackbox.localhost`)"
+      - "traefik.http.services.blackbox.loadbalancer.server.port=9115"
+    logging:
+      driver: json-file
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Istanbul
