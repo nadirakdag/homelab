@@ -68,9 +68,69 @@
       }
     },
     {
+      "id": "d51ad786-b6f0-47cf-8c1d-504137be25f9",
+      "name": "jellyfin",
+      "url": "http://jellyfin:8096",
+      "appearance": {
+        "iconUrl": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/svg/act.svg",
+        "appNameStatus": "normal",
+        "positionAppName": "column",
+        "lineClampAppName": 1,
+        "appNameFontSize": 16
+      },
+      "network": {
+        "enabledStatusChecker": true,
+        "statusCodes": [
+          "200",
+          "301",
+          "302",
+          "304",
+          "307",
+          "308"
+        ]
+      },
+      "behaviour": {
+        "isOpeningNewTab": true,
+        "externalUrl": "http://jellyfin.localhost"
+      },
+      "area": {
+        "type": "wrapper",
+        "properties": {
+          "id": "default"
+        }
+      },
+      "shape": {
+        "lg": {
+          "location": {
+            "x": 7,
+            "y": 0
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          }
+        }
+      },
+      "integration": {
+        "type": "jellyfin",
+        "properties": [
+          {
+            "field": "username",
+            "type": "public",
+            "value": "myuser"
+          },
+          {
+            "field": "password",
+            "type": "private",
+            "value": "pass"
+          }
+        ]
+      }
+    },
+    {
       "id": "927e7eec-01b0-46e2-b775-a15c9e36f820",
       "name": "Deluge",
-      "url": "http://deluge",
+      "url": "http://deluge:8112",
       "appearance": {
         "iconUrl": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/svg/deluge.svg",
         "appNameStatus": "normal",
@@ -363,10 +423,53 @@
         "lg": {
           "location": {
             "x": 0,
+            "y": 2
+          },
+          "size": {
+            "width": 7,
+            "height": 2
+          }
+        }
+      }
+    },
+    {
+      "id": "62ceb8e9-5c57-4b8b-873f-da2584d5bd68",
+      "type": "media-server",
+      "properties": {},
+      "area": {
+        "type": "wrapper",
+        "properties": {
+          "id": "default"
+        }
+      },
+      "shape": {
+        "sm": {
+          "location": {
+            "x": 0,
             "y": 0
           },
           "size": {
-            "width": 2,
+            "width": 3,
+            "height": 2
+          }
+        },
+        "md": {
+          "location": {
+            "x": 0,
+            "y": 0
+          },
+          "size": {
+            "width": 3,
+            "height": 2
+          }
+        },
+        "lg": {
+          "location": {
+            "x": 7,
+            "y": 2
+          },
+          "size": {
+            "width": 3,
             "height": 2
           }
         }

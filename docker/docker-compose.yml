@@ -156,6 +156,55 @@ services:
     networks:
       - traefik_proxy
 
+# =============================================================
+#
+#	prowlarr - indexer
+#
+# =============================================================
+
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/Istanbul
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.prowlarr.rule=Host(`prowlarr.localhost`)"
+      - "traefik.http.services.prowlarr.loadbalancer.server.port=9696"
+    networks:
+      - traefik_proxy
+    logging:
+      driver: json-file
+
+# =============================================================
+#
+#	jellyfin - streamer
+#
+# =============================================================
+
+  jellyfin:
+    image: lscr.io/linuxserver/jellyfin:latest
+    container_name: jellyfin
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/Istanbul
+      #- JELLYFIN_PublishedServerUrl=192.168.0.5 #optional
+    volumes:
+      - videos:/data/tvshows
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.jellyfin.rule=Host(`jellyfin.localhost`)"
+      - "traefik.http.services.jellyfin.loadbalancer.server.port=8096"
+    networks:
+      - traefik_proxy
+    logging:
+      driver: json-file
+
 
 # =============================================================
 #
