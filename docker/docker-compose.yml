@@ -7,6 +7,15 @@ networks:
     name: traefik_proxy
     driver: bridge
 
+volumes:
+  videos:
+    driver: local 
+    driver_opts:
+      type: cifs
+      o: username=${USERNAME},password=${PASSWORD},vers=3.0,uid=1000,gid=1000,iocharset=utf8
+      device: //${SERVER}/tv-shows
+
+
 services:
 
 # =============================================================
@@ -113,7 +122,6 @@ services:
       - PGID=1000
       - TZ=Europe/Istanbul
     volumes:
-      - ./deluge/config:/config
       - ./deluge/downloads:/downloads
     restart: unless-stopped
     labels:
@@ -122,6 +130,32 @@ services:
       - "traefik.http.services.deluge.loadbalancer.server.port=8112"
     networks:
       - traefik_proxy
+
+# =============================================================
+#
+#	sonarr - tv show tracker
+#
+# =============================================================
+
+  sonarr:
+    image: linuxserver/sonarr:latest
+    container_name: sonarr
+    restart: unless-stopped
+    logging:
+      driver: json-file
+    environment:
+      - TZ=Europe/Istanbul # Specify a timezone to use
+      - PUID=1000 # User ID to run as
+      - PGID=1000 # Group ID to run as
+    volumes:
+      - videos:/data # Location of all your media
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.sonarr.rule=Host(`sonarr.localhost`)"
+      - "traefik.http.services.sonarr.loadbalancer.server.port=8989"
+    networks:
+      - traefik_proxy
+
 
 # =============================================================
 #

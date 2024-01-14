@@ -10,12 +10,34 @@
       "position": 0
     }
   ],
-  "apps": [],
-  "widgets": [
+  "apps": [
     {
-      "id": "6def8106-c007-401c-94dd-73cd2870a07e",
-      "type": "dlspeed",
-      "properties": {},
+      "id": "ad665e36-18c6-485e-ad48-c2bfee4fc873",
+      "name": "Sonarr",
+      "url": "http://sonarr",
+      "appearance": {
+        "iconUrl": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/svg/sonarr.svg",
+        "appNameStatus": "normal",
+        "positionAppName": "column",
+        "lineClampAppName": 1,
+        "appNameFontSize": 16
+      },
+      "network": {
+        "enabledStatusChecker": true,
+        "statusCodes": [
+          "200",
+          "301",
+          "302",
+          "304",
+          "307",
+          "308"
+        ]
+      },
+      "behaviour": {
+        "isOpeningNewTab": true,
+        "externalUrl": "http://sonarr.localhost",
+        "tooltipDescription": "Sonarr"
+      },
       "area": {
         "type": "wrapper",
         "properties": {
@@ -23,38 +45,85 @@
         }
       },
       "shape": {
-        "sm": {
-          "location": {
-            "x": 0,
-            "y": 0
-          },
-          "size": {
-            "width": 2,
-            "height": 2
-          }
-        },
-        "md": {
-          "location": {
-            "x": 0,
-            "y": 0
-          },
-          "size": {
-            "width": 2,
-            "height": 2
-          }
-        },
         "lg": {
           "location": {
-            "x": 0,
+            "x": 6,
             "y": 0
           },
           "size": {
-            "width": 2,
-            "height": 2
+            "width": 1,
+            "height": 1
           }
         }
+      },
+      "integration": {
+        "type": "sonarr",
+        "properties": [
+          {
+            "field": "apiKey",
+            "type": "private",
+            "value": "038c92849d1447b3b519c583dcd26ebd"
+          }
+        ]
       }
     },
+    {
+      "id": "927e7eec-01b0-46e2-b775-a15c9e36f820",
+      "name": "Deluge",
+      "url": "http://deluge",
+      "appearance": {
+        "iconUrl": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/svg/deluge.svg",
+        "appNameStatus": "normal",
+        "positionAppName": "column",
+        "lineClampAppName": 1,
+        "appNameFontSize": 16
+      },
+      "network": {
+        "enabledStatusChecker": true,
+        "statusCodes": [
+          "200",
+          "301",
+          "302",
+          "304",
+          "307",
+          "308"
+        ]
+      },
+      "behaviour": {
+        "isOpeningNewTab": true,
+        "externalUrl": "http://deluge.localhost"
+      },
+      "area": {
+        "type": "wrapper",
+        "properties": {
+          "id": "default"
+        }
+      },
+      "shape": {
+        "lg": {
+          "location": {
+            "x": 6,
+            "y": 1
+          },
+          "size": {
+            "width": 1,
+            "height": 1
+          }
+        }
+      },
+      "integration": {
+        "type": "deluge",
+        "properties": [
+          {
+            "field": "password",
+            "type": "private",
+            "value": "deluge"
+          }
+        ]
+      }
+    }
+  ],
+  "widgets": [
     {
       "id": "e3004052-6b83-480e-b458-56e8ccdca5f0",
       "type": "weather",
@@ -200,6 +269,100 @@
         "lg": {
           "location": {
             "x": 2,
+            "y": 0
+          },
+          "size": {
+            "width": 2,
+            "height": 2
+          }
+        }
+      }
+    },
+    {
+      "id": "6def8106-c007-401c-94dd-73cd2870a07e",
+      "type": "dlspeed",
+      "properties": {},
+      "area": {
+        "type": "wrapper",
+        "properties": {
+          "id": "default"
+        }
+      },
+      "shape": {
+        "sm": {
+          "location": {
+            "x": 0,
+            "y": 0
+          },
+          "size": {
+            "width": 2,
+            "height": 2
+          }
+        },
+        "md": {
+          "location": {
+            "x": 0,
+            "y": 0
+          },
+          "size": {
+            "width": 2,
+            "height": 2
+          }
+        },
+        "lg": {
+          "location": {
+            "x": 0,
+            "y": 0
+          },
+          "size": {
+            "width": 2,
+            "height": 2
+          }
+        }
+      }
+    },
+    {
+      "id": "ee0661d9-ddfb-4280-82a1-568c36cd46d2",
+      "type": "torrents-status",
+      "properties": {
+        "displayCompletedTorrents": true,
+        "displayActiveTorrents": true,
+        "speedLimitOfActiveTorrents": 10,
+        "displayStaleTorrents": true,
+        "labelFilterIsWhitelist": true,
+        "labelFilter": [],
+        "displayRatioWithFilter": true
+      },
+      "area": {
+        "type": "wrapper",
+        "properties": {
+          "id": "default"
+        }
+      },
+      "shape": {
+        "sm": {
+          "location": {
+            "x": 0,
+            "y": 0
+          },
+          "size": {
+            "width": 2,
+            "height": 2
+          }
+        },
+        "md": {
+          "location": {
+            "x": 0,
+            "y": 0
+          },
+          "size": {
+            "width": 2,
+            "height": 2
+          }
+        },
+        "lg": {
+          "location": {
+            "x": 0,
             "y": 0
           },
           "size": {
