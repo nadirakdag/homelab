@@ -9,7 +9,7 @@
         update_cache: yes
     
     - name: add user permissions
-      shell: "usermod -aG docker poc"
+      shell: "usermod -aG docker {{ansible_user}}"
     
     - name: install docker-compose
       apt:

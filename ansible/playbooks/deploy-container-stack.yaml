@@ -1,0 +1,14 @@
+tasks:
+  - name: copying file with playbook
+    copy:
+      src: ../../docker
+      dest: "/home/{{ansible_user}}/"
+      owner: "{{ansible_user}}"
+      group: "{{ansible_user}}"
+      mode: 0777
+      force: true
+
+  - name: run docker-compose up
+    shell: 
+      cmd: "docker-compose -f docker-compose.yml up -d"
+      chdir: "/home/{{ansible_user}}/docker/"
