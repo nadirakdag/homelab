@@ -6,7 +6,7 @@ This repo store changes of my home lab with history and store configuration of a
 
 - [ ] Configure Shield and Homenetwork
 - [x] Create 3d Pritable NAS Case or (find one) or Find a NAS case (like jonsbo n2/n3) (I bought a Jonsbo N2)
-- [ ] Build a new NAS Server
+- [x] Build a new NAS Server
 - [ ] Re-configure Friday as single node Docker server or VM Hypervisor
 - [x] Create a diagram of Network
  
