@@ -1,0 +1,41 @@
+---
+- hosts: all
+  become: yes
+  vars:
+    directories:
+      - { path: "/mnt/data" }
+      - { path: "/mnt/config" }
+      - { path: "/mnt/downloads" }
+    nfs_mounts: 
+      - { dst: "/mnt/data", src: "10.30.40.137:/mnt/user/tv-shows" }
+      - { dst: "/mnt/config", src: "10.30.40.137:/mnt/user/config" }
+      - { dst: "/mnt/downloads", src: "10.30.40.137:/mnt/user/downloads" }
+  tasks:
+    - name: upgrade apt packages
+      become: true
+      apt:
+        upgrade: yes
+        update_cache: yes
+    
+    - name: install nfs common
+      become: true
+      apt:
+        name:
+          - nfs-common
+
+    - name: create directories
+      file:
+        path: "{{ item.path }}"
+        state: directory
+      with_items: "{{directories}}"
+
+    - name: mount nfs shares
+      mount: 
+        fstype: nfs
+        opts: "anonuid=1000,anongid=1000,tcp,rw"
+        dump: 0
+        passno: 0
+        state: mounted
+        src: "{{ item.src }}"
+        path: "{{ item.dst }}"
+      with_items: "{{nfs_mounts}}"

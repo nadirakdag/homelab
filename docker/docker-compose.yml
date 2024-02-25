@@ -7,15 +7,6 @@ networks:
     name: traefik_proxy
     driver: bridge
 
-volumes:
-  videos:
-    driver: local 
-    driver_opts:
-      type: cifs
-      o: username=${USERNAME},password=${PASSWORD},vers=3.0,uid=1000,gid=1000,iocharset=utf8
-      device: //${SERVER}/tv-shows
-
-
 services:
 
 # =============================================================
@@ -50,7 +41,7 @@ services:
         - TZ=Europe/Istanbul  
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.api.rule=Host(`traefik.localhost`)"
+        - "traefik.http.routers.api.rule=Host(`traefik.${DOMAIN}`)"
         - "traefik.http.routers.api.service=api@internal"
         # Add at least an authentication middleware basic or OAuth for a better security
       ports:
@@ -81,7 +72,7 @@ services:
       driver: json-file
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.whoami.rule=Host(`whoami.localhost`)"
+      - "traefik.http.routers.whoami.rule=Host(`whoami.${DOMAIN}`)"
     networks:
       - traefik_proxy
 
@@ -103,12 +94,12 @@ services:
       driver: json-file
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro # Optional, only if you want docker integration
-      - ./homarr/configs:/app/data/configs
-      - ./homarr/icons:/app/public/icons
-      - ./homarr/data:/data
+      - /mnt/config/homarr/configs:/app/data/configs
+      - /mnt/config/homarr/icons:/app/public/icons
+      - /mnt/config/homarr/data:/data
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.homarr.rule=Host(`dashboard.localhost`)"
+      - "traefik.http.routers.homarr.rule=Host(`dashboard.${DOMAIN}`)"
     networks:
       - traefik_proxy
 
@@ -128,11 +119,12 @@ services:
       - PGID=1000
       - TZ=Europe/Istanbul
     volumes:
-      - ./deluge/downloads:/downloads
+      - /mnt/downloads:/downloads
+      - /mnt/config/deluge:/config
     restart: unless-stopped
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.deluge.rule=Host(`deluge.localhost`)"
+      - "traefik.http.routers.deluge.rule=Host(`deluge.${DOMAIN}`)"
       - "traefik.http.services.deluge.loadbalancer.server.port=8112"
     networks:
       - traefik_proxy
@@ -154,10 +146,12 @@ services:
       - PUID=1000 # User ID to run as
       - PGID=1000 # Group ID to run as
     volumes:
-      - videos:/data # Location of all your media
+      - /mnt/data:/data # Location of all your media
+      - /mnt/config/sonarr:/config
+      - /mnt/downloads:/downloads
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.sonarr.rule=Host(`sonarr.localhost`)"
+      - "traefik.http.routers.sonarr.rule=Host(`sonarr.${DOMAIN}`)"
       - "traefik.http.services.sonarr.loadbalancer.server.port=8989"
     networks:
       - traefik_proxy
@@ -176,9 +170,11 @@ services:
       - PGID=1000
       - TZ=Etc/Istanbul
     restart: unless-stopped
+    volumes:
+      - /mnt/config/prowlarr:/config
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.prowlarr.rule=Host(`prowlarr.localhost`)"
+      - "traefik.http.routers.prowlarr.rule=Host(`prowlarr.${DOMAIN}`)"
       - "traefik.http.services.prowlarr.loadbalancer.server.port=9696"
     networks:
       - traefik_proxy
@@ -200,11 +196,12 @@ services:
       - TZ=Etc/Istanbul
       #- JELLYFIN_PublishedServerUrl=192.168.0.5 #optional
     volumes:
-      - videos:/data/tvshows
+      - /mnt/data:/data/tvshows
+      - /mnt/config/jellyfin:/config
     restart: unless-stopped
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.jellyfin.rule=Host(`jellyfin.localhost`)"
+      - "traefik.http.routers.jellyfin.rule=Host(`jellyfin.${DOMAIN}`)"
       - "traefik.http.services.jellyfin.loadbalancer.server.port=8096"
     networks:
       - traefik_proxy
@@ -226,7 +223,7 @@ services:
     restart: unless-stopped
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.speedtest.rule=Host(`speedtest.localhost`)"
+      - "traefik.http.routers.speedtest.rule=Host(`speedtest.${DOMAIN}`)"
       - "traefik.http.services.speedtest.loadbalancer.server.port=9798"
     logging:
       driver: json-file
@@ -246,7 +243,7 @@ services:
     image: prom/prometheus:latest
     restart: unless-stopped
     volumes:
-      - ./prometheus/:/etc/prometheus/
+      - /mnt/config/prometheus/:/etc/prometheus/
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
@@ -254,7 +251,7 @@ services:
       - '--web.console.templates=/usr/share/prometheus/consoles'
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.prometheus.rule=Host(`prometheus.localhost`)"
+      - "traefik.http.routers.prometheus.rule=Host(`prometheus.${DOMAIN}`)"
       - "traefik.http.services.prometheus.loadbalancer.server.port=9090"
     logging:
       driver: json-file
@@ -278,16 +275,16 @@ services:
     image: grafana/grafana
     restart: unless-stopped
     volumes:
-      - ./grafana/provisioning/:/etc/grafana/provisioning/
+      - /mnt/config/grafana/provisioning/:/etc/grafana/provisioning/
     depends_on:
       - prometheus
     env_file:
-      - ./grafana/config.monitoring
+      - /mnt/config/grafana/config.monitoring
     networks:
       - traefik_proxy
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.grafana.rule=Host(`grafana.localhost`)"
+      - "traefik.http.routers.grafana.rule=Host(`grafana.${DOMAIN}`)"
       - "traefik.http.services.grafana.loadbalancer.server.port=3000"
     logging:
       driver: json-file
@@ -310,10 +307,10 @@ services:
     networks:
       - traefik_proxy
     volumes:
-      - ./blackbox/config:/config
+      - /mnt/config/blackbox/config:/config
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.blackbox.rule=Host(`blackbox.localhost`)"
+      - "traefik.http.routers.blackbox.rule=Host(`blackbox.${DOMAIN}`)"
       - "traefik.http.services.blackbox.loadbalancer.server.port=9115"
     logging:
       driver: json-file
