@@ -146,7 +146,7 @@ services:
       - PUID=1000 # User ID to run as
       - PGID=1000 # Group ID to run as
     volumes:
-      - /mnt/data:/data # Location of all your media
+      - /mnt/tv-shows:/data # Location of all your media
       - /mnt/config/sonarr:/config
       - /mnt/downloads:/downloads
     labels:
@@ -196,7 +196,7 @@ services:
       - TZ=Etc/Istanbul
       #- JELLYFIN_PublishedServerUrl=192.168.0.5 #optional
     volumes:
-      - /mnt/data:/data/tvshows
+      - /mnt/tv-shows:/data/tv-shows
       - /mnt/config/jellyfin:/config
     restart: unless-stopped
     labels:
@@ -272,6 +272,7 @@ services:
 # =============================================================
 
   grafana:
+    container_name: grafana
     image: grafana/grafana
     restart: unless-stopped
     volumes:
@@ -300,6 +301,7 @@ services:
 # =============================================================
 
   ping:
+    container_name: ping
     image: prom/blackbox-exporter
     restart: unless-stopped
     command:
