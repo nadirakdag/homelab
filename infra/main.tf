@@ -17,7 +17,7 @@ locals {
       memory      = 2048
       swap        = 0
       rootfs_size = "8G"
-      ip          = "192.168.2.100"
+      ip          = "192.168.2.100/24"
       gw          = "192.168.2.254"
       tags        = ["nginx", "proxy", "lxc"]
       ssh_key     = var.ssh_key
@@ -31,7 +31,7 @@ locals {
       memory      = 1024
       swap        = 0
       rootfs_size = "4G"
-      ip          = "192.168.2.101"
+      ip          = "192.168.2.101/24"
       gw          = "192.168.2.254"
       tags        = ["pulse", "monitoring", "lxc"]
       ssh_key     = var.ssh_key
@@ -45,7 +45,7 @@ locals {
       memory      = 512
       swap        = 0
       rootfs_size = "8G"
-      ip          = "192.168.2.102"
+      ip          = "192.168.2.102/24"
       gw          = "192.168.2.254"
       tags        = ["netbird", "network", "lxc"]
       ssh_key     = var.ssh_key
@@ -59,7 +59,7 @@ locals {
       memory      = 1024
       swap        = 0
       rootfs_size = "4G"
-      ip          = "192.168.2.103"
+      ip          = "192.168.2.103/24"
       gw          = "192.168.2.254"
       tags        = ["gatus", "monitoring", "lxc"]
       ssh_key     = var.ssh_key
@@ -73,7 +73,7 @@ locals {
       memory      = 1024
       swap        = 0
       rootfs_size = "4G"
-      ip          = "192.168.2.104"
+      ip          = "192.168.2.104/24"
       gw          = "192.168.2.254"
       tags        = ["myspeed", "monitoring", "lxc"]
       ssh_key     = var.ssh_key
@@ -87,7 +87,7 @@ locals {
       memory      = 1024
       swap        = 0
       rootfs_size = "1G"
-      ip          = "192.168.2.105"
+      ip          = "192.168.2.105/24"
       gw          = "192.168.2.254"
       tags        = ["it-tools", "tools", "lxc"]
       ssh_key     = var.ssh_key
@@ -101,7 +101,7 @@ locals {
       memory      = 4096
       swap        = 0
       rootfs_size = "32G"
-      ip          = "192.168.2.106"
+      ip          = "192.168.2.106/24"
       gw          = "192.168.2.254"
       tags        = ["immich", "tools", "lxc"]
       ssh_key     = var.ssh_key
@@ -118,7 +118,7 @@ locals {
       memory      = 8192
       disk_size   = "100G"
       ipconfig0   = "ip=192.168.2.150/24,gw=192.168.2.254"
-      tags        = ["docker", "container-host"]
+      tags        = ["docker", "container-host", "vm"]
       ci_user     = var.user
       ssh_key     = var.ssh_key
       ci_password = var.user_password
@@ -132,13 +132,13 @@ locals {
       memory      = 16384
       disk_size   = "128G"
       ipconfig0   = "ip=192.168.2.151/24,gw=192.168.2.254"
-      tags        = ["virtualmetric", "elasticsearch", "test"]
+      tags        = ["virtualmetric", "elasticsearch", "test","vm"]
       ci_user     = var.user
       ssh_key     = var.ssh_key
       ci_password = var.user_password
     }
     dev-linux-director = {
-      vm_id       = 101
+      vm_id       = 102
       name        = "dev-linux-director"
       clone       = "ubuntu-24.04"
       cores       = 2
@@ -146,13 +146,13 @@ locals {
       memory      = 2048
       disk_size   = "128G"
       ipconfig0   = "ip=192.168.2.152/24,gw=192.168.2.254"
-      tags        = ["virtualmetric", "test"]
+      tags        = ["virtualmetric", "test","vm"]
       ci_user     = var.user
       ssh_key     = var.ssh_key
       ci_password = var.user_password
     }
     eu-linux-director = {
-      vm_id       = 101
+      vm_id       = 103
       name        = "eu-linux-director"
       clone       = "ubuntu-24.04"
       cores       = 2
@@ -160,13 +160,13 @@ locals {
       memory      = 2048
       disk_size   = "128G"
       ipconfig0   = "ip=192.168.2.153/24,gw=192.168.2.254"
-      tags        = ["virtualmetric", "test"]
+      tags        = ["virtualmetric", "test","vm"]
       ci_user     = var.user
       ssh_key     = var.ssh_key
       ci_password = var.user_password
     }
     us-linux-director = {
-      vm_id       = 101
+      vm_id       = 104
       name        = "us-linux-director"
       clone       = "ubuntu-24.04"
       cores       = 2
@@ -174,13 +174,14 @@ locals {
       memory      = 2048
       disk_size   = "128G"
       ipconfig0   = "ip=192.168.2.154/24,gw=192.168.2.254"
-      tags        = ["virtualmetric", "test"]
+      tags        = ["virtualmetric", "test","vm"]
       ci_user     = "nadir"
       ci_user     = var.user
       ci_password = var.user_password
+      ssh_key     = var.ssh_key
     }
     aus-linux-director = {
-      vm_id       = 101
+      vm_id       = 105
       name        = "aus-linux-director"
       clone       = "ubuntu-24.04"
       cores       = 2
@@ -188,7 +189,7 @@ locals {
       memory      = 2048
       disk_size   = "128G"
       ipconfig0   = "ip=192.168.2.155/24,gw=192.168.2.254"
-      tags        = ["virtualmetric", "test"]
+      tags        = ["virtualmetric", "test","vm"]
       ci_user     = var.user
       ssh_key     = var.ssh_key
       ci_password = var.user_password
