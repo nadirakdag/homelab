@@ -1,0 +1,8 @@
+proxmox_api_url          = "https://your-proxmox-server:8006/api2/json"
+proxmox_api_token_id     = "terraform@pam!terraform-token"
+proxmox_api_token_secret = "your-secret-token-here"
+proxmox_tls_insecure     = true  # Set to false if you have valid SSL certificates
+target_node              = "pve" # Your Proxmox node name
+ssh_key                  = "" # Set your ssh public key for lxc containers and virtual machines 
+user_password            = "" # Set your user password for lxc containers and virtual machines 
+user                     = "" # Set your cloud-init user name for virtual machines
