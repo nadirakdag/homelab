@@ -54,3 +54,9 @@ variable "user_password" {
   type = string
   sensitive = true
 }
+
+
+variable "user" {
+  description = "default user for vm"
+  type = string
+}
