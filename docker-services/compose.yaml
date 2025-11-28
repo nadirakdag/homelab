@@ -83,7 +83,7 @@ services:
       - proxy
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.ittools.rule=Host(`it-tools.nlab.sh`)"
+      - "traefik.http.routers.ittools.rule=Host(`tools.nlab.sh`)"
       - "traefik.http.services.ittools.loadbalancer.server.port=80"
 
   whoami:
