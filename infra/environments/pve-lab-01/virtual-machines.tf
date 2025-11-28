@@ -1,7 +1,7 @@
 
 # Example VM
 module "virtual_machines" {
-  source   = "./modules/vm"
+  source   = "../../modules/vm"
   for_each = local.virtual_machines
 
   vm_id       = each.value.vm_id

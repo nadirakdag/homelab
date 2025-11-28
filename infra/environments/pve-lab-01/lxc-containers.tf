@@ -1,7 +1,7 @@
 
 # Example LXC Container
 module "lxc_containers" {
-  source   = "./modules/lxc"
+  source   = "../../modules/lxc"
   for_each = local.lxc_containers
 
   vm_id       = each.value.ct_id
