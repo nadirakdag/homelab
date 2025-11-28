@@ -9,36 +9,6 @@
 
 locals {
   lxc_containers = {
-    nginx-proxy-manager = {
-      ct_id       = 1000
-      hostname    = "nginx-proxy-manager"
-      ostemplate  = "local:vztmpl/ubuntu-24.04-standard_24.04-2_amd64.tar.zst"
-      cores       = 2
-      memory      = 2048
-      swap        = 0
-      rootfs_size = "8G"
-      ip          = "192.168.2.100/24"
-      gw          = "192.168.2.254"
-      dns         = "192.168.2.1"
-      tags        = ["nginx", "proxy", "lxc"]
-      ssh_key     = var.ssh_key
-      password    = var.user_password
-    }
-    pulse = {
-      ct_id       = 1001
-      hostname    = "pulse"
-      ostemplate  = "local:vztmpl/ubuntu-24.04-standard_24.04-2_amd64.tar.zst"
-      cores       = 1
-      memory      = 1024
-      swap        = 0
-      rootfs_size = "4G"
-      ip          = "192.168.2.101/24"
-      gw          = "192.168.2.254"
-      dns         = "192.168.2.1"
-      tags        = ["pulse", "monitoring", "lxc"]
-      ssh_key     = var.ssh_key
-      password    = var.user_password
-    }
     netbird = {
       ct_id       = 1002
       hostname    = "netbird"
@@ -51,51 +21,6 @@ locals {
       gw          = "192.168.2.254"
       dns         = "192.168.2.1"
       tags        = ["netbird", "network", "lxc"]
-      ssh_key     = var.ssh_key
-      password    = var.user_password
-    }
-    gatus = {
-      ct_id       = 1003
-      hostname    = "gatus"
-      ostemplate  = "local:vztmpl/ubuntu-24.04-standard_24.04-2_amd64.tar.zst"
-      cores       = 1
-      memory      = 1024
-      swap        = 0
-      rootfs_size = "4G"
-      ip          = "192.168.2.103/24"
-      gw          = "192.168.2.254"
-      dns         = "192.168.2.1"
-      tags        = ["gatus", "monitoring", "lxc"]
-      ssh_key     = var.ssh_key
-      password    = var.user_password
-    }
-    myspeed = {
-      ct_id       = 1004
-      hostname    = "myspeed"
-      ostemplate  = "local:vztmpl/ubuntu-24.04-standard_24.04-2_amd64.tar.zst"
-      cores       = 1
-      memory      = 1024
-      swap        = 0
-      rootfs_size = "4G"
-      ip          = "192.168.2.104/24"
-      gw          = "192.168.2.254"
-      dns         = "192.168.2.1"
-      tags        = ["myspeed", "monitoring", "lxc"]
-      ssh_key     = var.ssh_key
-      password    = var.user_password
-    }
-    it-tools = {
-      ct_id       = 1005
-      hostname    = "it-tools"
-      ostemplate  = "local:vztmpl/ubuntu-24.04-standard_24.04-2_amd64.tar.zst"
-      cores       = 1
-      memory      = 1024
-      swap        = 0
-      rootfs_size = "4G"
-      ip          = "192.168.2.105/24"
-      gw          = "192.168.2.254"
-      dns         = "192.168.2.1"
-      tags        = ["it-tools", "tools", "lxc"]
       ssh_key     = var.ssh_key
       password    = var.user_password
     }
