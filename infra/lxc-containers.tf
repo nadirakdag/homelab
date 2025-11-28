@@ -22,6 +22,7 @@ module "lxc_containers" {
     bridge = "vmbr0"
     ip     = each.value.ip
     gw     = each.value.gw
+    dns    = each.value.dns
   }
 
   unprivileged = true

@@ -19,6 +19,7 @@ locals {
       rootfs_size = "8G"
       ip          = "192.168.2.100/24"
       gw          = "192.168.2.254"
+      dns         = "192.168.2.1"
       tags        = ["nginx", "proxy", "lxc"]
       ssh_key     = var.ssh_key
       password    = var.user_password
@@ -33,6 +34,7 @@ locals {
       rootfs_size = "4G"
       ip          = "192.168.2.101/24"
       gw          = "192.168.2.254"
+      dns         = "192.168.2.1"
       tags        = ["pulse", "monitoring", "lxc"]
       ssh_key     = var.ssh_key
       password    = var.user_password
@@ -47,6 +49,7 @@ locals {
       rootfs_size = "8G"
       ip          = "192.168.2.102/24"
       gw          = "192.168.2.254"
+      dns         = "192.168.2.1"
       tags        = ["netbird", "network", "lxc"]
       ssh_key     = var.ssh_key
       password    = var.user_password
@@ -61,6 +64,7 @@ locals {
       rootfs_size = "4G"
       ip          = "192.168.2.103/24"
       gw          = "192.168.2.254"
+      dns         = "192.168.2.1"
       tags        = ["gatus", "monitoring", "lxc"]
       ssh_key     = var.ssh_key
       password    = var.user_password
@@ -75,6 +79,7 @@ locals {
       rootfs_size = "4G"
       ip          = "192.168.2.104/24"
       gw          = "192.168.2.254"
+      dns         = "192.168.2.1"
       tags        = ["myspeed", "monitoring", "lxc"]
       ssh_key     = var.ssh_key
       password    = var.user_password
@@ -89,6 +94,7 @@ locals {
       rootfs_size = "4G"
       ip          = "192.168.2.105/24"
       gw          = "192.168.2.254"
+      dns         = "192.168.2.1"
       tags        = ["it-tools", "tools", "lxc"]
       ssh_key     = var.ssh_key
       password    = var.user_password
@@ -103,6 +109,7 @@ locals {
       rootfs_size = "32G"
       ip          = "192.168.2.106/24"
       gw          = "192.168.2.254"
+      dns         = "192.168.2.1"
       tags        = ["immich", "tools", "lxc"]
       ssh_key     = var.ssh_key
       password    = var.user_password
@@ -132,7 +139,7 @@ locals {
       memory      = 16384
       disk_size   = "128G"
       ipconfig0   = "ip=192.168.2.151/24,gw=192.168.2.254"
-      tags        = ["virtualmetric", "elasticsearch", "test","vm"]
+      tags        = ["virtualmetric", "elasticsearch", "test", "vm"]
       ci_user     = var.user
       ssh_key     = var.ssh_key
       ci_password = var.user_password
@@ -146,7 +153,7 @@ locals {
       memory      = 2048
       disk_size   = "128G"
       ipconfig0   = "ip=192.168.2.152/24,gw=192.168.2.254"
-      tags        = ["virtualmetric", "test","vm"]
+      tags        = ["virtualmetric", "test", "vm"]
       ci_user     = var.user
       ssh_key     = var.ssh_key
       ci_password = var.user_password
@@ -160,7 +167,7 @@ locals {
       memory      = 2048
       disk_size   = "128G"
       ipconfig0   = "ip=192.168.2.153/24,gw=192.168.2.254"
-      tags        = ["virtualmetric", "test","vm"]
+      tags        = ["virtualmetric", "test", "vm"]
       ci_user     = var.user
       ssh_key     = var.ssh_key
       ci_password = var.user_password
@@ -174,7 +181,7 @@ locals {
       memory      = 2048
       disk_size   = "128G"
       ipconfig0   = "ip=192.168.2.154/24,gw=192.168.2.254"
-      tags        = ["virtualmetric", "test","vm"]
+      tags        = ["virtualmetric", "test", "vm"]
       ci_user     = "nadir"
       ci_user     = var.user
       ci_password = var.user_password
@@ -189,7 +196,7 @@ locals {
       memory      = 2048
       disk_size   = "128G"
       ipconfig0   = "ip=192.168.2.155/24,gw=192.168.2.254"
-      tags        = ["virtualmetric", "test","vm"]
+      tags        = ["virtualmetric", "test", "vm"]
       ci_user     = var.user
       ssh_key     = var.ssh_key
       ci_password = var.user_password

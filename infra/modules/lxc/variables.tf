@@ -4,8 +4,8 @@
 
 variable "vm_id" {
   description = "Container ID"
-  type = number
-  default = 100
+  type        = number
+  default     = 100
 }
 
 variable "hostname" {
@@ -60,12 +60,14 @@ variable "network" {
     bridge = string
     ip     = string
     gw     = string
+    dns    = string
   })
   default = {
     name   = "eth0"
     bridge = "vmbr0"
     ip     = "dhcp"
     gw     = ""
+    dns    = ""
   }
 }
 
@@ -113,6 +115,6 @@ variable "features" {
 
 variable "password" {
   description = "root user password"
-  type = string
-  sensitive = true
+  type        = string
+  sensitive   = true
 }

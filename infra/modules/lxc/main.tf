@@ -35,6 +35,7 @@ resource "proxmox_lxc" "container" {
     gw     = var.network.gw
   }
 
+  nameserver   = var.network.dns
   unprivileged = var.unprivileged
   start        = var.start
   onboot       = var.onboot
