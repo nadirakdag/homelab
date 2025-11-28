@@ -41,7 +41,7 @@ locals {
     }
   }
   virtual_machines = {
-    docker01 = {
+    docker-host-01 = {
       vm_id       = 100
       name        = "docker-host-01"
       clone       = "ubuntu-24.04"
@@ -55,7 +55,7 @@ locals {
       ssh_key     = var.ssh_key
       ci_password = var.user_password
     }
-    elk = {
+    elk-docker = {
       vm_id       = 101
       name        = "elk-docker"
       clone       = "ubuntu-24.04"
@@ -64,7 +64,7 @@ locals {
       memory      = 16384
       disk_size   = "128G"
       ipconfig0   = "ip=192.168.2.151/24,gw=192.168.2.254"
-      tags        = ["virtualmetric", "elasticsearch", "test", "vm"]
+      tags        = ["virtualmetric", "elasticsearch", "test", "vm", "container-host"]
       ci_user     = var.user
       ssh_key     = var.ssh_key
       ci_password = var.user_password
