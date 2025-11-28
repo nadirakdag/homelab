@@ -17,7 +17,7 @@ services:
     image:  twinproduction/gatus:stable
     container_name: gatus
     restart: unless-stopped
-    volume:
+    volumes:
       - ./data/gatus:/config 
 
   it-tools:
