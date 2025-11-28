@@ -67,7 +67,7 @@ locals {
     }
     myspeed = {
       ct_id       = 1004
-      hostname    = "gatus"
+      hostname    = "myspeed"
       ostemplate  = "local:vztmpl/ubuntu-24.04-standard_24.04-2_amd64.tar.zst"
       cores       = 1
       memory      = 1024
@@ -86,7 +86,7 @@ locals {
       cores       = 1
       memory      = 1024
       swap        = 0
-      rootfs_size = "1G"
+      rootfs_size = "4G"
       ip          = "192.168.2.105/24"
       gw          = "192.168.2.254"
       tags        = ["it-tools", "tools", "lxc"]
