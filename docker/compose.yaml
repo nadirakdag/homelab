@@ -1,0 +1,33 @@
+services:
+  pulse:
+    image: rcourtman/pulse:latest
+    container_name: pulse
+    restart: unless-stopped
+    volumes:
+      - ./data/pulse:/data
+
+  myspeed:
+    image: germannewsmaker/myspeed
+    container_name: myspeed
+    restart: unless-stopped
+    volumes:
+      - ./data/myspeed:/myspeed/data
+
+  gatus:
+    image:  twinproduction/gatus:stable
+    container_name: gatus
+    restart: unless-stopped
+    volume:
+      - ./data/gatus:/config 
+
+  it-tools:
+    image: sharevb/it-tools:latest
+    container_name: it-tools
+    restart: unless-stopped
+
+  watchyourlan:
+    image: aceberg/watchyourlan
+    container_name: watchyourlan
+    restart: unless-stopped
+    volumes:
+      - ./data/watchyourlan:/data/WatchYourLAN
