@@ -57,7 +57,7 @@ locals {
     }
     elk = {
       vm_id       = 101
-      name        = "elk"
+      name        = "elk-docker"
       clone       = "ubuntu-24.04"
       cores       = 4
       sockets     = 1

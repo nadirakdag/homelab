@@ -1,10 +1,53 @@
 services:
+  traefik:
+    image: traefik:v3.4
+    container_name: traefik
+    restart: unless-stopped
+    command:
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+      - "--ping=true"
+      - "--api.dashboard=true"
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    labels:
+      - "traefik.http.routers.traefik.service=api@internal"
+    networks:
+      - proxy
+    healthcheck:
+      test: ["CMD", "traefik", "healthcheck", "--ping"]
+      interval: 30s
+      timeout: 3s
+
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - proxy
+    environment:
+      - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_SCHEDULE=0 0 4 * * *   
+      - WATCHTOWER_INCLUDE_STOPPED=false
+
   pulse:
     image: rcourtman/pulse:latest
     container_name: pulse
     restart: unless-stopped
     volumes:
       - ./data/pulse:/data
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.pulse.rule=Host(`pulse.nlab.sh`)"
+      - "traefik.http.services.pulse.loadbalancer.server.port=8000"
 
   myspeed:
     image: germannewsmaker/myspeed
@@ -12,22 +55,53 @@ services:
     restart: unless-stopped
     volumes:
       - ./data/myspeed:/myspeed/data
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.myspeed.rule=Host(`myspeed.nlab.sh`)"
+      - "traefik.http.services.myspeed.loadbalancer.server.port=5216"
 
   gatus:
-    image:  twinproduction/gatus:stable
+    image: twinproduction/gatus:stable
     container_name: gatus
     restart: unless-stopped
+    networks:
+      - proxy
     volumes:
-      - ./data/gatus:/config 
+      - ./data/gatus:/config
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.gatus.rule=Host(`gatus.nlab.sh`)"
+      - "traefik.http.services.gatus.loadbalancer.server.port=8080"
 
   it-tools:
     image: sharevb/it-tools:latest
     container_name: it-tools
     restart: unless-stopped
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.ittools.rule=Host(`it-tools.nlab.sh`)"
+      - "traefik.http.services.ittools.loadbalancer.server.port=80"
 
-  watchyourlan:
-    image: aceberg/watchyourlan
-    container_name: watchyourlan
+  whoami:
+    image: "traefik/whoami"
     restart: unless-stopped
-    volumes:
-      - ./data/watchyourlan:/data/WatchYourLAN
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.whoami.rule=Host(`whoami.nlab.sh`)"
+      - "traefik.http.routers.whoami.entrypoints=web"
+
+networks:
+  proxy:
+    name: proxy  
+
+logging:
+  driver: "json-file"
+  options:
+    max-size: "10m"
+    max-file: "3"
