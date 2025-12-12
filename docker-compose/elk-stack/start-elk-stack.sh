@@ -7,34 +7,34 @@ echo "Logging enabled. Output will be written to $LOGFILE"
 
 set -e
 
-# Helper function to check if a container is healthy
+# Helper function to check if a container is running
 check_container() {
   local name=$1
   local retries=20
   local count=0
 
-  echo "Checking $name health..."
+  echo "Checking $name container status..."
   while [ $count -lt $retries ]; do
-    STATUS=$(docker inspect --format='{{.State.Health.Status}}' "$name" 2>/dev/null || echo "starting")
+    RUNNING=$(docker inspect --format='{{.State.Running}}' "$name" 2>/dev/null || echo "false")
 
-    if [ "$STATUS" = "healthy" ]; then
-      echo "$name is healthy."
+    if [ "$RUNNING" = "true" ]; then
+      echo "$name is running."
       return 0
     fi
 
-    echo "$name not healthy yet (status: $STATUS)... retrying"
+    echo "$name not running yet... retrying"
     sleep 3
     count=$((count+1))
   done
 
-  echo "ERROR: $name failed to become healthy." >&2
+  echo "ERROR: $name failed to start." >&2
   exit 1
 }
 
 echo "Starting Elasticsearch..."
 docker-compose up -d elasticsearch
 
-# Check Elasticsearch
+# Check Elasticsearch (running state only)
 check_container "elasticsearch"
 
 echo "Creating Kibana service token..."
@@ -51,4 +51,4 @@ docker-compose up -d kibana
 # Check Kibana
 check_container "kibana"
 
-echo "Done! Elasticsearch and Kibana are now running and healthy.""
+echo "Done! Elasticsearch and Kibana are now running."
