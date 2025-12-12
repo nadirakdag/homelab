@@ -1,0 +1,24 @@
+endpoints:
+  - name: nadirakdag.dev
+    group: websites
+    url: "https://nadirakdag.dev"
+    interval: 2m
+    conditions:
+      - "[STATUS] == 200"
+      - "[RESPONSE_TIME] < 150"
+
+  - name: karekutu.com.tr
+    group: websites
+    url: "https://karekutu.com.tr/"
+    interval: 2m
+    conditions:
+      - "[STATUS] == 200"
+      - "[RESPONSE_TIME] < 150"
+
+  - name: moonin.love
+    group: websites
+    url: "https://moonin.love/"
+    interval: 2m
+    conditions:
+      - "[STATUS] == 200"
+      - "[RESPONSE_TIME] < 150"
