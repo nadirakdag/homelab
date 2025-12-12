@@ -75,7 +75,7 @@ locals {
       clone       = "ubuntu-24.04"
       cores       = 2
       sockets     = 1
-      memory      = 2048
+      memory      = 4096
       disk_size   = "128G"
       ipconfig0   = "ip=192.168.2.152/24,gw=192.168.2.254"
       tags        = ["virtualmetric", "test", "vm"]
@@ -89,7 +89,7 @@ locals {
       clone       = "ubuntu-24.04"
       cores       = 2
       sockets     = 1
-      memory      = 2048
+      memory      = 4096
       disk_size   = "128G"
       ipconfig0   = "ip=192.168.2.153/24,gw=192.168.2.254"
       tags        = ["virtualmetric", "test", "vm"]
@@ -103,7 +103,7 @@ locals {
       clone       = "ubuntu-24.04"
       cores       = 2
       sockets     = 1
-      memory      = 2048
+      memory      = 4096
       disk_size   = "128G"
       ipconfig0   = "ip=192.168.2.154/24,gw=192.168.2.254"
       tags        = ["virtualmetric", "test", "vm"]
@@ -118,7 +118,7 @@ locals {
       clone       = "ubuntu-24.04"
       cores       = 2
       sockets     = 1
-      memory      = 2048
+      memory      = 4096
       disk_size   = "128G"
       ipconfig0   = "ip=192.168.2.155/24,gw=192.168.2.254"
       tags        = ["virtualmetric", "test", "vm"]
