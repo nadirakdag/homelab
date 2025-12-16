@@ -24,21 +24,6 @@ locals {
       ssh_key     = var.ssh_key
       password    = var.user_password
     }
-    immich = {
-      ct_id       = 1006
-      hostname    = "immich"
-      ostemplate  = "local:vztmpl/ubuntu-24.04-standard_24.04-2_amd64.tar.zst"
-      cores       = 4
-      memory      = 4096
-      swap        = 0
-      rootfs_size = "32G"
-      ip          = "192.168.2.106/24"
-      gw          = "192.168.2.254"
-      dns         = "192.168.2.1"
-      tags        = ["immich", "tools", "lxc"]
-      ssh_key     = var.ssh_key
-      password    = var.user_password
-    }
   }
   virtual_machines = {
     docker-host-01 = {
@@ -122,6 +107,20 @@ locals {
       disk_size   = "128G"
       ipconfig0   = "ip=192.168.2.155/24,gw=192.168.2.254"
       tags        = ["virtualmetric", "test", "vm"]
+      ci_user     = var.user
+      ssh_key     = var.ssh_key
+      ci_password = var.user_password
+    }
+    immich = {
+      vm_id       = 106
+      name        = "immich"
+      clone       = "ubuntu-24.04"
+      cores       = 4
+      sockets     = 1
+      memory      = 8192
+      disk_size   = "128G"
+      ipconfig0   = "ip=192.168.2.156/24,gw=192.168.2.254"
+      tags        = ["docker", "container-host", "vm"]
       ci_user     = var.user
       ssh_key     = var.ssh_key
       ci_password = var.user_password
