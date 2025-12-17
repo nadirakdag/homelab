@@ -1,7 +1,7 @@
 
 ## 1. Install tools on host
 ```
-sudo apt install -y libguestfs-tools qemu-utils
+apt install -y libguestfs-tools
 ```
 
 ## 2. Download latest Ubuntu 24.04 cloud image
@@ -65,11 +65,6 @@ qm set 9000 --boot c --bootdisk scsi0
 ## Add cloud-init drive
 ```
 qm set 9000 --ide2 local-lvm:cloudinit,size=4M
-```
-
-## Set serial console 
-```
-qm set 9000 --serial0 socket --vga serial0
 ```
 
 ## Enable QEMU guest agent
