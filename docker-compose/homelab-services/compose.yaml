@@ -100,7 +100,35 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.nexterm.rule=Host(`nexterm.nlab.sh`)"
       - "traefik.http.services.nexterm.loadbalancer.server.port=6989"
-      
+
+
+  whois:
+      image: dumbwareio/dumbwhois:latest
+      container_name: whois
+      restart: unless-stopped
+      networks:
+        - proxy
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.whois.rule=Host(`whois.nlab.sh`)"
+        - "traefik.http.services.whois.loadbalancer.server.port=3000"
+  
+  notepad:
+    image: dumbwareio/dumbpad:latest
+    container_name: notepad
+    restart: unless-stopped
+    volumes:
+      - ./data/notepad:/app/data
+    networks:
+      - proxy
+    environment:
+      DUMBBUDGET_PIN: ${DUMB_PIN}
+      BASE_URL: 'notepad.nlab.sh'
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.notepad.rule=Host(`notepad.nlab.sh`)"
+      - "traefik.http.services.notepad.loadbalancer.server.port=3000"
+
 networks:
   proxy:
     name: proxy  
