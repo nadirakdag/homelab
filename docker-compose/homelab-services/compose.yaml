@@ -77,6 +77,7 @@ services:
 
   whoami:
     image: "traefik/whoami"
+    container_name: whoami
     restart: unless-stopped
     networks:
       - proxy
@@ -85,6 +86,21 @@ services:
       - "traefik.http.routers.whoami.rule=Host(`whoami.nlab.sh`)"
       - "traefik.http.routers.whoami.entrypoints=web"
 
+  nexterm:
+    image: germannewsmaker/nexterm:latest
+    container_name: nexterm
+    restart: always
+    environment:
+      ENCRYPTION_KEY: ${NEXTERM_ENCRYPTION_KEY}
+    networks:
+      - proxy
+    volumes:
+      - ./data/nexterm:/app/data
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.nexterm.rule=Host(`nexterm.nlab.sh`)"
+      - "traefik.http.services.nexterm.loadbalancer.server.port=6989"
+      
 networks:
   proxy:
     name: proxy  
