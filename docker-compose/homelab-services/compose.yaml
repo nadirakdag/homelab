@@ -129,6 +129,42 @@ services:
       - "traefik.http.routers.notepad.rule=Host(`notepad.nlab.sh`)"
       - "traefik.http.services.notepad.loadbalancer.server.port=3000"
 
+
+  filedrop:
+    image: dumbwareio/dumbdrop:latest
+    container_name: filedrop
+    restart: unless-stopped
+    volumes:
+      - ./data/filedrop:/app/uploads 
+    networks:
+      - proxy
+    environment:
+        MAX_FILE_SIZE: ${DUMB_DROP_MAX_FILE_SIZE}
+        DUMBDROP_PIN: ${DUMB_PIN}
+        AUTO_UPLOAD: ${DUMB_DROP_AUTO_UPLOAD}
+        BASE_URL: http://drop.nlab.sh
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.drop.rule=Host(`drop.nlab.sh`)"
+      - "traefik.http.services.drop.loadbalancer.server.port=3000"
+
+  budget:
+    image: dumbwareio/dumbbudget:latest
+    container_name: budget
+    restart: unless-stopped
+    environment:
+      DUMBBUDGET_PIN: ${DUMB_PIN}
+      CURRENCY: ${DUMB_BUDGET_CURRENCY}
+      BASE_URL: 'budget.nlab.sh'
+    networks:
+      - proxy
+    volumes:
+      - ./data/budget:/app/data
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.budget.rule=Host(`budget.nlab.sh`)"
+      - "traefik.http.services.budget.loadbalancer.server.port=3000"
+
 networks:
   proxy:
     name: proxy  

@@ -24,6 +24,21 @@ locals {
       ssh_key     = var.ssh_key
       password    = var.user_password
     }
+    adguard = {
+      ct_id       = 1003
+      hostname    = "adguard"
+      ostemplate  = "local:vztmpl/ubuntu-24.04-standard_24.04-2_amd64.tar.zst"
+      cores       = 1
+      memory      = 512
+      swap        = 0
+      rootfs_size = "2G"
+      ip          = "192.168.2.1/24"
+      gw          = "192.168.2.254"
+      dns         = "1.1.1.1"
+      tags        = ["adguard", "network", "lxc"]
+      ssh_key     = var.ssh_key
+      password    = var.user_password
+    }
   }
   virtual_machines = {
     docker-host-01 = {
